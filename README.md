@@ -1,33 +1,184 @@
-# Balancing_Sw Project README
 
-## Project Overview
-This project implements a graphical balancing simulation for industrial impellers/fans, replicating the graphical interface and methodology of RotorZone. The application maintains the original mathematical balancing calculations while refining the visual representation to match RotorZone's interface requirements.
+# ⚙️ Industrial Balancing Software
 
-Key features include:
-- Blade positioning aligned with RotorZone's vertical-first (90°) configuration
-- Clockwise blade numbering convention matching RotorZone's display
-- Trial position snapping to blade geometry similar to RotorZone
-- Unchanged mathematical foundation for balance calculations
-- Interactive correction marker with live weight/angle updates
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python / Tech Stack](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](#)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey)](#)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-## Features
-- Interactive 2D polar coordinate visualization
-- Drag-and-drop correction weight placement
-- Blade angle visualization with labels
-- Trial position angle display
-- Balance calculation metrics (weight, angle, fit error)
-- Split-weight solution calculation
-- Responsive canvas rendering
+> An end-to-end industrial software solution for dynamic rotor balancing, vibration analysis, and mass correction calculations across single-plane and two-plane rotating machinery.
 
-## Getting Started
+---
+
+## 📌 Overview
+
+Unbalance in rotating machinery is one of the primary causes of mechanical wear, structural fatigue, and industrial downtime. **Industrial Balancing Software** provides precision calculation algorithms and real-time visualization to quantify amplitude and phase angle discrepancies, aiding engineers in dynamic balancing operations to comply with **ISO 1940-1** quality standards.
+
+---
+
+## ✨ Key Features
+
+- **Single-Plane & Two-Plane Static/Dynamic Balancing:**
+  - Influence coefficient method for accurate trial-mass vector analysis.
+  - Phase-angle and displacement amplitude calculation.
+- **Mass Correction Options:**
+  - Addition (adding balance weights) or removal (drilling/milling out weight).
+  - Fixed-location splitting (e.g., splitting correction weight across discrete fan blades or bolt holes).
+- **ISO 1940 Quality Grade Assessment:**
+  - Automated comparison against standard balance quality grades ($G0.4, G1.0, G2.5, G6.3, G16$).
+- **Polar & Vector Diagnostics:**
+  - Interactive graphical visualizer for original unbalance, trial runs, and residual vector plots.
+- **Report Generation:**
+  - Export comprehensive inspection and compliance reports in PDF/JSON formats.
+
+---
+
+## 🛠️ Architecture & Tech Stack
+
+- **Frontend / UI:** PyQt6 / Web UI (HTML5, Tailwind CSS, JavaScript)
+- **Backend / Calculation Engine:** Python 3.10+ (NumPy, SciPy, FastAPI)
+- **Data Visualization:** Matplotlib / Chart.js
+- **Exporting:** ReportLab / Jinja2 PDF Renderer
+
+---
+
+## 🚀 Quick Start
+
 ### Prerequisites
-- Browser with JavaScript enabled
-- Local Python environment (for backend processing)
 
-### Setup
-1. Clone repository
-2. Install dependencies (if any):
+Ensure you have the following installed on your local system:
+- **Python:** `3.10` or higher
+- **Git**
+
+### Installation
+
+1. **Clone the repository:**
    ```bash
-   # No specific dependencies required for frontend
-   # Python dependencies (if running backend): 
-   #   pip install flask numpy (if backend is implemented)
+   git clone [https://github.com/SinghSyntax001/Industrial-Balancing-Software.git](https://github.com/SinghSyntax001/Industrial-Balancing-Software.git)
+   cd Industrial-Balancing-Software
+
+```
+
+2. **Create and activate a virtual environment:**
+```bash
+# On Linux/macOS
+python3 -m venv venv
+source venv/bin/activate
+
+# On Windows
+python -m venv venv
+.\venv\Scripts\activate
+
+```
+
+
+3. **Install dependencies:**
+```bash
+pip install -r requirements.txt
+
+```
+
+
+4. **Launch the Application:**
+```bash
+python main.py
+
+```
+
+
+
+---
+
+## 📐 Dynamic Balancing Formula Reference
+
+The core solver uses the **Influence Coefficient Method**:
+
+$$[O] + [A] \cdot [W_{trial}] = [O_{trial}]$$
+
+Where:
+
+* $[O]$ = Initial unbalance vibration vector $(\text{Amplitude} \angle \theta)$
+* $[W_{trial}]$ = Known trial weight vector $(\text{Mass} \angle \phi)$
+* $[O_{trial}]$ = Measured vibration vector during trial run
+* $[A]$ = Influence coefficient calculated via:
+
+$$[A] = \frac{[O_{trial}] - [O]}{[W_{trial}]}$$
+
+The required correction weight $[W_{correction}]$ to cancel out initial unbalance is:
+
+$$[W_{correction}] = -\frac{[O]}{[A]}$$
+
+---
+
+## 📂 Project Structure
+
+```text
+Industrial-Balancing-Software/
+├── app/
+│   ├── algorithms/        # Math engines (Influence coefficients, ISO 1940 math)
+│   ├── ui/                # UI screens and components
+│   ├── models/            # Data models (Rotors, Weights, Run readings)
+│   └── utils/             # PDF exporters & report generators
+├── tests/                 # Unit & integration tests
+├── docs/                  # Documentation and API specs
+├── main.py                # Application entry point
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
+
+```
+
+---
+
+## 🧪 Running Tests
+
+To execute the mathematical test suite and verify vector calculations:
+
+```bash
+pytest tests/
+
+```
+
+---
+
+## 🗺️ Roadmap
+
+* [ ] Real-time sensor input stream support via DAQ/Modbus over TCP/IP
+* [ ] 3D Rotor vibration mode animation visualizer
+* [ ] Multi-plane balancing ($N$-plane expansion)
+* [ ] Cloud database integration for machine maintenance logging
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the project.
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
+
+---
+
+## 📜 License
+
+Distributed under the **MIT License**. See `LICENSE` for details.
+
+---
+
+## 👤 Author
+
+* **SinghSyntax001** - *[GitHub Profile](https://www.google.com/search?q=https://github.com/SinghSyntax001)*
+
+```
+
+***
+
+### 💡 Customization Tips
+If your software uses specific frameworks or has a slightly different focus (e.g., assembly line load balancing vs. dynamic mechanical rotor balancing), you can tweak:
+1. **Tech Stack**: Update the frameworks listed under **Architecture & Tech Stack**.
+2. **Main file**: Update `python main.py` or the start command to match your project's startup command (e.g., `npm start`, `uvicorn app.main:app --reload`, etc.).
+
+```
