@@ -57,9 +57,7 @@ Ensure you have the following installed on your local system:
    ```bash
    git clone [https://github.com/SinghSyntax001/Industrial-Balancing-Software.git](https://github.com/SinghSyntax001/Industrial-Balancing-Software.git)
    cd Industrial-Balancing-Software
-
-```
-
+  '''
 2. **Create and activate a virtual environment:**
 ```bash
 # On Linux/macOS
