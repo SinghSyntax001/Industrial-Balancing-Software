@@ -109,44 +109,9 @@ $$[W_{correction}] = -\frac{[O]}{[A]}$$
 
 ---
 
-## 📂 Project Structure
 
-```text
-Industrial-Balancing-Software/
-├── app/
-│   ├── algorithms/        # Math engines (Influence coefficients, ISO 1940 math)
-│   ├── ui/                # UI screens and components
-│   ├── models/            # Data models (Rotors, Weights, Run readings)
-│   └── utils/             # PDF exporters & report generators
-├── tests/                 # Unit & integration tests
-├── docs/                  # Documentation and API specs
-├── main.py                # Application entry point
-├── requirements.txt       # Python dependencies
-└── README.md              # Project documentation
 
-```
 
----
-
-## 🧪 Running Tests
-
-To execute the mathematical test suite and verify vector calculations:
-
-```bash
-pytest tests/
-
-```
-
----
-
-## 🗺️ Roadmap
-
-* [ ] Real-time sensor input stream support via DAQ/Modbus over TCP/IP
-* [ ] 3D Rotor vibration mode animation visualizer
-* [ ] Multi-plane balancing ($N$-plane expansion)
-* [ ] Cloud database integration for machine maintenance logging
-
----
 
 ## 🤝 Contributing
 
