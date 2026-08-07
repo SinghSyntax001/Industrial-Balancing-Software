@@ -2,7 +2,6 @@
 # ⚙️ Industrial Balancing Software
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python / Tech Stack](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](#)
 [![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux-lightgrey)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
@@ -135,13 +134,4 @@ Distributed under the **MIT License**. See `LICENSE` for details.
 
 * **SinghSyntax001** - *[GitHub Profile](https://www.google.com/search?q=https://github.com/SinghSyntax001)*
 
-```
 
-***
-
-### 💡 Customization Tips
-If your software uses specific frameworks or has a slightly different focus (e.g., assembly line load balancing vs. dynamic mechanical rotor balancing), you can tweak:
-1. **Tech Stack**: Update the frameworks listed under **Architecture & Tech Stack**.
-2. **Main file**: Update `python main.py` or the start command to match your project's startup command (e.g., `npm start`, `uvicorn app.main:app --reload`, etc.).
-
-```
