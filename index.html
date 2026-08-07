@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Four run no-phase graphical balancing chart for industrial impellers and fans.">
+    <title>Four Run Graphical Balance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="shell">
+    <section class="control-panel">
+        <div class="panel-header">
+            <h2>Four Run Graphical Balance</h2>
+            <p class="subtitle">Single-plane no-phase balancing chart with draggable correction marker.</p>
+        </div>
+
+        <form class="input-form" id="inputForm">
+            <fieldset>
+                <legend>Machine Configuration</legend>
+                <div class="field-grid">
+                    <div class="row">
+                        <label for="blades"># Blades</label>
+                        <input type="number" id="blades" value="0" min="0">
+                    </div>
+                    <div class="row">
+                        <label class="neutral-lbl" for="trial_weight">Trial Weight (g)</label>
+                        <input type="number" id="trial_weight" step="any" placeholder="0">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Measurements</legend>
+                <div class="field-grid">
+                    <div class="row">
+                        <label class="neutral-lbl" for="initial_vib">Initial Vibration</label>
+                        <input type="number" id="initial_vib" step="any" placeholder="0">
+                    </div>
+                    <div class="row">
+                        <label class="red-lbl" for="red_vib">Vibration at RED</label>
+                        <input type="number" id="red_vib" step="any" placeholder="0">
+                    </div>
+                    <div class="row">
+                        <label class="blue-lbl" for="blue_vib">Vibration at BLUE</label>
+                        <input type="number" id="blue_vib" step="any" placeholder="0">
+                    </div>
+                    <div class="row">
+                        <label class="green-lbl" for="green_vib">Vibration at GREEN</label>
+                        <input type="number" id="green_vib" step="any" placeholder="0">
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" id="resetBtn">Reset</button>
+                <button type="button" class="btn btn-secondary" id="drawBtn">Draw</button>
+                <button type="button" class="btn btn-primary" id="calculateBtn">Plot</button>
+            </div>
+        </form>
+
+        <div class="reference-box" id="referenceBox">
+            <h3>Reference Positions</h3>
+            <p id="referenceOut">Draw the chart to generate blade-aligned trial positions.</p>
+        </div>
+
+        <div class="results" id="outputBox" aria-live="polite">
+            <h3>Correction</h3>
+            <div class="results-grid">
+                <div class="result-item">
+                    <span class="label">Weight</span>
+                    <span class="value" id="w_out">--</span>
+                    <span class="unit">g</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Angle</span>
+                    <span class="value" id="a_out">--</span>
+                    <span class="unit">deg from RED</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Nearest Blade</span>
+                    <span class="value" id="blade_out">--</span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Fit Error</span>
+                    <span class="value" id="fit_out">--</span>
+                </div>
+            </div>
+            <p id="blade_row" class="blade-alert"></p>
+            <button type="button" class="btn btn-success" id="splitBtn">Split Weight</button>
+            <div class="split-box" id="splitBox">
+                <span id="splitA">--</span>
+                <span id="splitB">--</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="chart-panel" id="chartPanel">
+        <div class="chart-header">
+            <h3>Manual Balancing Chart</h3>
+            <div class="legend">
+                <span><i class="dot red"></i>RED</span>
+                <span><i class="dot blue"></i>BLUE</span>
+                <span><i class="dot green"></i>GREEN</span>
+                <span><i class="dot orange"></i>Blade</span>
+                <span><i class="dot gold"></i>Correction</span>
+            </div>
+        </div>
+        <div class="canvas-container" id="canvasWrapper">
+            <canvas id="balanceCanvas" width="760" height="760"></canvas>
+        </div>
+    </section>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
